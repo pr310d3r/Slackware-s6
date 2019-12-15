@@ -1,0 +1,2 @@
+s6-mkdir -p -m 1777 /tmp/.ICE-unix
+s6-mkdir -p -m 1777 /tmp/.X11-unix

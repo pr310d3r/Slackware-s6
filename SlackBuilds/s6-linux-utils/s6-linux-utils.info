@@ -1,0 +1,5 @@
+PRGNAM="s6-linux-utils"
+VERSION="2.5.1.1"
+HOMEPAGE="http://skarnet.org/software/s6-linux-utils/"
+DOWNLOAD="http://skarnet.org/software/s6-linux-utils/s6-linux-utils-2.5.1.1.tar.gz"
+MD5SUM="fd5eeafd7155ffb67d72afbf9b0096dc"

@@ -1,0 +1,2 @@
+#!/bin/execlineb -P
+if { /usr/bin/dbus-uuidgen --ensure } /usr/bin/dbus-daemon --system --nofork

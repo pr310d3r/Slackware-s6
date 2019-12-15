@@ -1,0 +1,2 @@
+if { s6-echo "Turning-off swap." }
+s6-swapoff /dev/sda1

@@ -1,0 +1,5 @@
+PRGNAM="s6-rc"
+VERSION="0.5.1.1"
+HOMEPAGE="https://skarnet.org/software/s6-rc/"
+DOWNLOAD="https://skarnet.org/software/s6-rc/s6-rc-0.5.1.1.tar.gz"
+MD5SUM="eecab911a3bedfce5129bd80c6c2197c"

@@ -1,0 +1,1 @@
+s6-mount -t tmpfs tmpfs /tmp -o mode=0755,size=1G,nodev,nosuid,noexec

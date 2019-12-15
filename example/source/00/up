@@ -1,0 +1,3 @@
+#if { s6-echo "init-stage2 starting." }
+#s6-hostname darkstar.yewtree.com.ph
+/etc/s6-rc/scripts/rc.S 

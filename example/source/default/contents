@@ -1,0 +1,14 @@
+00
+start-udevd
+mount-swap
+mount-rootrw
+mount-tmp
+create-ICE
+create-utmp
+init-urandom
+init-net
+start-cgmanager
+start-haveged
+start-dbus
+start-nm
+start-sshd

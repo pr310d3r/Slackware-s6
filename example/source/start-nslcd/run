@@ -1,0 +1,2 @@
+#!/bin/execlineb -P
+s6-envuidgid -B nslcd /usr/sbin/nslcd -n

@@ -1,0 +1,3 @@
+#!/bin/execlineb -P
+define XDG_CACHE_HOME /root/.cache
+/usr/sbin/NetworkManager -n

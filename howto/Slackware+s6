@@ -1,0 +1,89 @@
+Replacing Slackware's SysV init with s6
+
+I. Install the s6 packages. Build in this order;
+
+1. skalibs
+2. execline
+3. s6
+4. s6-linux-init
+5. s6-rc
+6. s6-portable-utils
+7. s6-linux-utils
+
+II. Boot your system with any live linux cd. (I used Slackware USB installation image). You need to chroot into your Slackware installation. You cannot do Step III with Slackware's SysV init running. Once the liveCD finishes booting and you have root prompt, do following;
+unlink /sbin/telinit
+
+# swapon /dev/sda1 (Adjust sda1 accordingly)
+# mount /dev/sda2 /mnt  (Adjust sda2 accordingly)
+# mount -o bind /dev /mnt/dev
+# mount -o bind /proc /mnt/proc
+# mount -o bind /sys /mnt/sys
+# chroot /mnt
+
+Remember, you are now inside the chroot environment.
+
+III. Replace SysV init with s6-linux-init
+
+1. You need to save the SysV's /sbin/init, /sbin/telinit, /sbin/shutdown, /sbin/halt, /sbin/poweroff and /sbin/reboot. In Slackware, telinit is a symbolic link to init, while poweroff and reboot are symbolic links to halt. Take note of these, then do the following:
+
+# unlink /sbin/telinit
+# unlink /sbin/reboot
+# unlink /sbin/poweroff
+# mv /sbin/init /sbin/init.sysv
+# mv /sbin/shutdown /sbin/shutdown.sysv
+# mv /sbin/halt /sbin/halt.sysv
+
+2. Edit the scripts in /etc/s6-linux-init/skel.
+
+a. In /etc/s6--linux-init/skel/rc.init, uncomment the lines that says;
+
+s6-rc-init /run/service
+
+exec /etc/s6-linux-init/current/scripts/runlevel "$rl"
+
+b. In /etc/s6--linux-init/skel/rc.shutdown, uncomment the lines that says;
+
+exec s6-rc -v2 -bda change
+
+c. In /etc/s6--linux-init/skel/runlevel, uncomment the lines that says;
+
+exec s6-rc -v2 -up change "$1"
+
+3. Run;
+
+# rm -rf /tmp/blah
+# s6-linux-init-maker -1 -G "/sbin/agetty 38400 tty1" /tmp/blah
+# rm -rf /etc/s6-linux-init/current
+# mv /tmp/blah /etc/s6-linux-init/current
+# cp -a /etc/s6-linux-init/current/bin/* /sbin/
+
+4. Configure s6-rc;
+
+4.1 Create the /etc/s6-rc/ directory
+
+# mkdir /etc/s6-rc
+
+4.2 Copy the "scripts" and "source" diectories from the "example" directory to /etc/s6-rc
+
+# cp -ar example/{scripts,source} /etc/s6-rc/
+
+4.3  Create the "/etc/s6-rc/compiled" directory by compiling /etc/s6-rc/source
+
+# s6-rc-compile -v 2 /etc/s6-rc/compiled /etc/s6-rc/source
+
+Note, s6-rc will look for the "compiled" directory. Giving it another will prevent your services
+from starting. You should not get any errors.
+
+5. Exit the chroot and reboot. You should see Slackware booting using the s6 init. 
+
+ 
+ 
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,5 @@
+PRGNAM="s6-portable-utils"
+VERSION="2.2.2.1"
+HOMEPAGE="http://skarnet.org/software/s6-portable-utils/"
+DOWNLOAD="http://skarnet.org/software/s6-portable-utils/s6-portable-utils-2.2.2.1.tar.gz"
+MD5SUM="c804eee1b4961bd7b7535189b0298598"
